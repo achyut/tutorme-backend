@@ -17,6 +17,8 @@ Route::get('/', function()
 });
 
 Route::post('/login','UsersController@login');
+Route::post('/forgot','UsersController@forgot');
+Route::post('/changepassword/{id}','UsersController@changepassword');
 
 Route::get('users','UsersController@index');
 Route::post('users','UsersController@store');
@@ -31,6 +33,7 @@ Route::get('/users/categories/{id}','UsersController@getAllCategoriesOfUser');
 Route::get('/users/subcategories/{id}','UsersController@getAllSubCategoriesOfUser');
 Route::post('/users/post/{id}','UsersController@storePost');
 Route::get('/users/post/{id}','UsersController@getAllPost');
+
 
 Route::get('post','PostsController@index');
 Route::post('post','PostsController@store');

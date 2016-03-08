@@ -166,7 +166,6 @@ class UsersController extends \BaseController {
 
 	public function getAllPost($id)
 	{
-		Log::info("Calling post");
 		$user = User::find($id);
 		if(!$user){
 			return $this->getFailResponse("Unable to find user with id ".$id);
@@ -194,5 +193,55 @@ class UsersController extends \BaseController {
 		return $subcategories;
 	}
 
+
+	public function forgot()
+	{
+		$email = trim(Input::get('email'));
+		$usr = User::where('email',$email)->get()->first();
+		if($usr){
+			$fullname = $usr->name;
+			
+			$randomString = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 1) . substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
+			$usr->password = Hash::make($randomString);
+			$usr->save();
+			
+			$val = array(
+				'name' => $fullname,
+				'password' => $randomString,
+				'email' => $email
+			);
+			Mail::send('emails.forgotpassword',$val, function($message) use ($val){
+	        	$message->from('support@tutorme.com', 'Tutorme Support');
+				$message->to($val['email'],$val['name'])->subject('New Password for tutorme.');
+	    	});	
+			$result = [];
+			return $this->getSuccessResponse($result,'Password successfully reset. Please check your email. '.$email.' for details');
+		}
+		else{
+			$message = 'User with email: '.$email.' not found. Please make sure the email address you had provided is correct';
+	    	return $this->getFailResponse($message);
+		}
+		
+	}
+
+	public function changepassword($id)
+	{
+		$usr = User::find($id);
+		if(!$usr){
+			return $this->getFailResponse("Unable to find user with id ".$id);
+		}
+		$oldpassword = Input::get('oldpassword');
+		if(!Hash::check($oldpassword,$usr->password)){
+			return $this->getFailResponse("Please enter correct old password");	
+		}
+
+		$password = Input::get('newpassword1');
+		if($usr){
+			$usr->password = Hash::make($password);
+			$usr->save();
+		}
+		$result = [];
+		return $this->getSuccessResponse($result,"Password successfully updated");
+	}
 }
 
