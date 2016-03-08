@@ -46,6 +46,8 @@ class PostsController extends \BaseController {
 		if(!$post){
 			return $this->getFailResponse("Unable to find post with id ".$id);
 		}
+		$post['category'] = $post->getcategory;
+		$post['subcategory'] = $post->getsubcategory;
 		return $post;
 	}
 

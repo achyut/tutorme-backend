@@ -98,4 +98,12 @@ class CategoriesController extends \BaseController {
 		return $subcategories;
 	}
 
+	public function getAllCategories(){
+		$categories = Category::all();
+		foreach ($categories as $cat) {
+			$cat['subcategories'] = $cat->subcategory;
+		}
+		$data['result'] = $categories;
+		return $data;
+	}
 }
