@@ -58,7 +58,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function post(){
-    	return $this->hasMany('Post','created_by');
+    	return $this->hasMany('Post','created_by')->orderBy('created_at','desc');
     }
    
 	public function storeCategories($categories){

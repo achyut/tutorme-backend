@@ -10,7 +10,6 @@ class PostsController extends \BaseController {
 	public function index()
 	{
 		$posts = Post::all();
-
 		return $posts;
 	}
 
@@ -23,7 +22,6 @@ class PostsController extends \BaseController {
 	{
 
 		$data = Input::all();
-		Log::info($data);
 
 		$validator = Validator::make($data, Post::$rules);
 
@@ -33,8 +31,7 @@ class PostsController extends \BaseController {
 		}
 
 		Post::create($data);
-
-		return $this->index();
+		return $this->getSuccessResponse($data,"Post Successfully created!");
 	}
 
 	/**

@@ -14,6 +14,6 @@ class Post extends \Eloquent {
 	];
 
 	// Don't forget to fill this array
-	protected $fillable = ['title','shortdesc','longdesc','price','rating','startdate','enddate','starttime','endtime','address','contact','email','preferedcontact','created_by'];
+	protected $fillable = ['title','shortdesc','longdesc','price','rating','startdate','enddate','starttime','endtime','address','contact','email','preferedcontact','created_by','category','subcategory'];
 
 }
