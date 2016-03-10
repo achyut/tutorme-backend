@@ -6,4 +6,4 @@ Password: {{ $password }}
 
 <p>
 Thank you,<br>
-Team Medico
+Team Tutorme

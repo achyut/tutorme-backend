@@ -20,14 +20,32 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		$validator = Validator::make($data = Input::all(), User::$rules);
+
+		$data = Input::all();
+
+		$validator = Validator::make($data, User::$rules);
 
 		if ($validator->fails())
 		{
 			return $this->getFailValidationResponse($validator);
 		}
+
+		$fullname = $data['name'];
+		$email = $data['email'];
+
 		$data['password'] = Hash::make($data['password']);
 		$result = User::create($data);
+		
+
+		$val = array(
+			'name' => $fullname,
+			'email' => $email
+		);
+		
+		Mail::send('emails.register',$val, function($message) use ($val){
+        	$message->from('support@tutorme.com', 'Tutorme Support');
+			$message->to($val['email'],$val['name'])->subject('Welcome to Tutorme.');
+    	});	
 		$message = "User successfully registered. Please login to continue.";
 		return $this->getSuccessResponse($result,$message);
 		
