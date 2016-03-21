@@ -89,7 +89,7 @@ class PostsController extends \BaseController {
 			return $this->getFailResponse("Unable to find post with id ".$id);
 		}
 		Post::destroy($id);
-		return $this->index();
+		return $this->getSuccessResponse($post,"Post Successfully deleted!");
 	}
 
 }
