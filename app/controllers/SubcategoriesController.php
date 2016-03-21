@@ -31,7 +31,7 @@ class SubcategoriesController extends \BaseController {
 
 		Subcategory::create($data);
 
-		return $this->index();
+		return $this->getSuccessResponse($data,"SubCategory Successfully created!");
 	}
 
 	/**

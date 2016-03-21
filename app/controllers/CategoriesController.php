@@ -29,8 +29,7 @@ class CategoriesController extends \BaseController {
 		}
 
 		Category::create($data);
-
-		return $this->index();
+		return $this->getSuccessResponse($data,"Category Successfully created!");
 	}
 
 	/**
