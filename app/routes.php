@@ -19,6 +19,7 @@ Route::get('/', function()
 Route::post('/login','UsersController@login');
 Route::post('/forgot','UsersController@forgot');
 Route::post('/changepassword/{id}','UsersController@changepassword');
+Route::post('/search','PostsController@search');
 
 Route::get('users','UsersController@index');
 Route::post('users','UsersController@store');

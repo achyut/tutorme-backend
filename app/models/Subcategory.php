@@ -4,7 +4,7 @@ class Subcategory extends \Eloquent {
 
 	// Add your validation rules here
 	public static $rules = [
-		'name' => 'required',
+		'name' => 'required|unique:subcategories',
 		'category' => 'required'
 	];
 

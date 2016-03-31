@@ -92,4 +92,83 @@ class PostsController extends \BaseController {
 		return $this->getSuccessResponse($post,"Post Successfully deleted!");
 	}
 
+	public function search(){
+		
+		//Log::info(Input::all());
+        $keyword = Input::get("keyword");
+        $rating = Input::get("rating");
+        $category = Input::get("category");
+        $subcategory = Input::get("subcategory");
+		$pricefrom = Input::get("price-from");
+		$priceto = Input::get("price-to");
+		
+		$query = "";
+		$and = false;
+		if(!empty($keyword)) {
+			$words = preg_split('/\s+/', $keyword);
+			foreach($words as $word) {
+			    $word = trim($word);
+			    if(!empty($word)){
+					$query = $query ." title LIKE '%".$word."%' or ";    	
+			    }
+			}
+			$query = substr($query,0,-3);
+			$and = true;
+		}
+		if(!empty($category)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$and = true;
+			$query = $query ." category ='".$category."' ";
+		}
+		if(!empty($rating)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$and = true;
+			$query = $query ." rating ='".$rating."' ";
+		}
+		if(!empty($subcategory)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$and = true;
+			$query = $query ." subcategory='".$subcategory."' ";
+		}
+
+		if(!empty($pricefrom) && empty($priceto)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$and = true;
+			$query = $query ." price >='".$pricefrom."' ";
+		}
+		if(!empty($priceto) && empty($pricefrom)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$and = true;
+			$query = $query ." price <='".$priceto."' ";
+		}
+		if(!empty($priceto) && !empty($pricefrom)){
+			if($and){
+				$query = $query ." and ";	
+			}
+			$query = $query ." price between ".$pricefrom." and ".$priceto." ";
+			$and = true;
+		}
+
+		if($and){
+			$posts = Post::whereRaw($query)->get();	
+		}
+		else{
+			$posts = Post::all();
+		}
+		
+		$result['result'] = $posts;
+		return $result;
+
+	}
+
 }

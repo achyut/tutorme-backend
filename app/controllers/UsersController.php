@@ -261,5 +261,6 @@ class UsersController extends \BaseController {
 		$result = [];
 		return $this->getSuccessResponse($result,"Password successfully updated");
 	}
+
 }
 
