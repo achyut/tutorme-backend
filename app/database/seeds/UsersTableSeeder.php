@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder {
 	// Uncomment the below to wipe the table clean before populating
 		$user1 = User::create([
 			'name' => 'Achyut Paudel',
-			'password' => Hash::make('tuyhca'),
+			'password' => Hash::make('xia307521'),
 			'email' => 'achyut.pdl@gmail.com',
 			'address' => $faker->address,
 			'contact' => $faker->phoneNumber,

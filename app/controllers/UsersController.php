@@ -90,8 +90,9 @@ class UsersController extends \BaseController {
 		}
 		
 		$user->update($data);
-
-		return $this->show($id);
+		Log::info($this->show($id));
+		$message = "User successfully updated.";
+		return $this->getSuccessResponse($this->show($id),$message);
 	}
 
 	/**
