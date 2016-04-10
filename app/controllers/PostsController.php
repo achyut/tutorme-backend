@@ -92,6 +92,16 @@ class PostsController extends \BaseController {
 		return $this->getSuccessResponse($post,"Post Successfully deleted!");
 	}
 
+	public function getReviews($id){
+		$post = Post::find($id);
+		if(!$post){
+			return $this->getFailResponse("Unable to find post with id ".$id);
+		}
+		$reviews = $post->review;
+		$result['result'] = $reviews;
+		return $result;
+	}
+
 	public function sponsor($id)
 	{
 		$post = Post::find($id);

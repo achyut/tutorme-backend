@@ -42,6 +42,7 @@ Route::get('post/{id}','PostsController@show');
 Route::post('post/{id}','PostsController@update');
 Route::get('post/delete/{id}','PostsController@destroy');
 Route::post('sponsor/{id}','PostsController@sponsor');
+Route::get('post/reviews/{id}','PostsController@getReviews');
 
 Route::get('allcategories','CategoriesController@getAllCategories');
 Route::get('categories','CategoriesController@index');
@@ -56,3 +57,10 @@ Route::post('subcategories','SubcategoriesController@store');
 Route::get('subcategories/{id}','SubcategoriesController@show');
 Route::post('subcategories/{id}','SubcategoriesController@update');
 Route::get('subcategories/delete/{id}','SubcategoriesController@destroy');
+
+Route::get('reviews','ReviewsController@index');
+Route::post('reviews','ReviewsController@store');
+Route::get('reviews/{id}','ReviewsController@show');
+Route::post('reviews/{id}','ReviewsController@update');
+Route::get('reviews/delete/{id}','ReviewsController@destroy');
+Route::get('reviews/post/{id}','ReviewsController@getPost');

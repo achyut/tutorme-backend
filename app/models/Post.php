@@ -27,4 +27,8 @@ class Post extends \Eloquent {
 	public function getsubcategory(){
 		return $this->belongsTo('Subcategory','subcategory');
 	}
+
+	public function review(){
+    	return $this->hasMany('Review','post')->orderBy('rating','desc');
+    }
 }
