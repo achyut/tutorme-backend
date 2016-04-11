@@ -9,7 +9,7 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::all();
+		$posts = Post::orderBy('sponsorprice','desc')->get();
 		return $posts;
 	}
 
@@ -158,12 +158,13 @@ class PostsController extends \BaseController {
 			$query = $query ." price between ".$pricefrom." and ".$priceto." ";
 			$and = true;
 		}
-
 		if($and){
+			$query = $query ."  order by sponsorprice desc";
+			//dd($query);
 			$posts = Post::whereRaw($query)->get();	
 		}
 		else{
-			$posts = Post::all();
+			$posts = Post::orderBy('sponsorprice','desc')->get();
 		}
 		
 		$result['result'] = $posts;

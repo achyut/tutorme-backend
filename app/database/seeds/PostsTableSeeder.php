@@ -12,14 +12,19 @@ class PostsTableSeeder extends Seeder {
 
 		foreach(range(1, 10) as $index)
 		{
+			$spons = $faker->numberBetween($min = 0, $max = 1);
+			$price = $faker->numberBetween($min = 100, $max = 500);
+			if($spons==0){
+				$price = 0;
+			}
 			Post::create([
 				'title' => $faker->name,
 				'shortdesc' => $faker->sentences($nb = 3, $asText = true),
 				'longdesc' => $faker->text($maxNbChars = 200),
 				'price' => $faker->numberBetween($min = 100, $max = 900),
 				'rating' => $faker->numberBetween($min = 1, $max = 5),
-				'sponsored' => $faker->numberBetween($min = 0, $max = 1),
-				'sponsorprice' => $faker->numberBetween($min = 100, $max = 500),
+				'sponsored' => $spons,
+				'sponsorprice' => $price,
 				'startdate' => $faker->dateTime($max = 'now'),
 				'enddate' => $faker->dateTime($max = 'now'),
 				'starttime' => $faker->dateTime($max = 'now'),
