@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration {
 			$table->text('longdesc');
 			$table->double('price');
 			$table->double('rating');
+			$table->double('sponsored');
+			$table->double('sponsorprice');
 			$table->string('startdate');
 			$table->string('enddate');
 			$table->string('starttime');

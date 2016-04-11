@@ -18,6 +18,8 @@ class PostsTableSeeder extends Seeder {
 				'longdesc' => $faker->text($maxNbChars = 200),
 				'price' => $faker->numberBetween($min = 100, $max = 900),
 				'rating' => $faker->numberBetween($min = 1, $max = 5),
+				'sponsored' => $faker->numberBetween($min = 0, $max = 1),
+				'sponsorprice' => $faker->numberBetween($min = 100, $max = 500),
 				'startdate' => $faker->dateTime($max = 'now'),
 				'enddate' => $faker->dateTime($max = 'now'),
 				'starttime' => $faker->dateTime($max = 'now'),
