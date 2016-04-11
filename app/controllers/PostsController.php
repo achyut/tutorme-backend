@@ -60,12 +60,14 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
+
 		$post = Post::find($id);
 		if(!$post){
 			return $this->getFailResponse("Unable to find post with id ".$id);
 		}
-
-		$validator = Validator::make($data = Input::all(), Post::$rules);
+		$data = Input::all();
+		
+		$validator = Validator::make($data, Post::$rules);
 
 		if ($validator->fails())
 		{
@@ -73,7 +75,7 @@ class PostsController extends \BaseController {
 		}
 
 		$result = $post->update($data);
-		return $this->show($id);
+		return $this->getSuccessResponse($post,"Post Successfully updated!");
 	}
 
 	/**
