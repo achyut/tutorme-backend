@@ -12,6 +12,7 @@ class CreateSubcategoryUserTable extends Migration {
 	 */
 	public function up()
 	{
+		
 		Schema::create('subcategory_user', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -31,6 +32,7 @@ class CreateSubcategoryUserTable extends Migration {
 	 */
 	public function down()
 	{
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 		Schema::drop('subcategory_user');
 	}
 

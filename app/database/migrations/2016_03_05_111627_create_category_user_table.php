@@ -12,6 +12,7 @@ class CreateCategoryUserTable extends Migration {
 	 */
 	public function up()
 	{
+		
 		Schema::create('category_user', function(Blueprint $table)
 		{
 			$table->increments('id');

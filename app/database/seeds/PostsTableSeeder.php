@@ -8,8 +8,8 @@ class PostsTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-
-
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+		DB::table('posts')->truncate();
 		foreach(range(1, 10) as $index)
 		{
 			$spons = $faker->numberBetween($min = 0, $max = 1);
@@ -29,8 +29,10 @@ class PostsTableSeeder extends Seeder {
 				'enddate' => $faker->dateTime($max = 'now'),
 				'starttime' => $faker->dateTime($max = 'now'),
 				'endtime' => $faker->dateTime($max = 'now'),
-				'address' => $faker->address,
-				'contact' => $faker->phoneNumber,
+				//'address' => $faker->address,
+				'address' => '1000 Greek row dr. Arlington, Texas 76013',
+				//'contact' => $faker->phoneNumber,
+				'contact' => '917-832-3967',
 				'email' => $faker->email,
 				'preferedcontact' => 'mobile',
 				'category' => $faker->numberBetween($min = 1, $max = 10),
@@ -51,8 +53,10 @@ class PostsTableSeeder extends Seeder {
 				'enddate' => $faker->dateTime($max = 'now'),
 				'starttime' => $faker->dateTime($max = 'now'),
 				'endtime' => $faker->dateTime($max = 'now'),
-				'address' => $faker->address,
-				'contact' => $faker->phoneNumber,
+				//'address' => $faker->address,
+				'address' => '1000 Greek row dr. Arlington, Texas 76013',
+				//'contact' => $faker->phoneNumber,
+				'contact' => '917-832-3967',
 				'email' => $faker->email,
 				'preferedcontact' => 'mobile',
 				'category' => $faker->numberBetween($min = 1, $max = 10),

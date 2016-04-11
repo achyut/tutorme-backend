@@ -92,6 +92,31 @@ class PostsController extends \BaseController {
 		return $this->getSuccessResponse($post,"Post Successfully deleted!");
 	}
 
+	public function sponsor($id)
+	{
+		$post = Post::find($id);
+		if(!$post){
+			return $this->getFailResponse("Unable to find post with id ".$id);
+		}
+
+		$validator = Validator::make($data = Input::all(), Post::$sponserrules);
+
+		if ($validator->fails())
+		{
+			return $this->getFailValidationResponse($validator);
+		}
+		if($data['sponsorprice']<=0){
+			$data['sponsored'] = 0;	
+			$data['sponsorprice'] = 0;
+		}
+		else{
+			$data['sponsored'] = 1;	
+		}
+		$result = $post->update($data);
+		$post = $this->show($id); 
+		return $this->getSuccessResponse($post,"Post Successfully sponsored!!");
+	}
+
 	public function search(){
 		
 		//Log::info(Input::all());

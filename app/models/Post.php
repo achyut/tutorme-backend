@@ -12,6 +12,9 @@ class Post extends \Eloquent {
 		 'preferedcontact' => 'required',
 		 'created_by' => 'required',
 	];
+	public static $sponserrules = [
+		 'sponsorprice' => 'required'
+	];
 
 	// Don't forget to fill this array
 	protected $fillable = ['title','shortdesc','longdesc','price','rating','sponsored','sponsorprice','startdate','enddate','starttime','endtime','address','contact','email','preferedcontact','created_by','category','subcategory'];

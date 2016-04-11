@@ -41,6 +41,7 @@ Route::post('post','PostsController@store');
 Route::get('post/{id}','PostsController@show');
 Route::post('post/{id}','PostsController@update');
 Route::get('post/delete/{id}','PostsController@destroy');
+Route::post('sponsor/{id}','PostsController@sponsor');
 
 Route::get('allcategories','CategoriesController@getAllCategories');
 Route::get('categories','CategoriesController@index');
